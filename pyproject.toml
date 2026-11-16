@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastapi-cicd"
+version = "0.1.0"
+description = "Minimal FastAPI service for learning GitHub Actions, CI/CD, automated testing, and cloud deployment."
+readme = "README.md"
+requires-python = ">=3.15,<3.16"
+dependencies = [
+    "fastapi>=0.163.1,<1.0.0",
+    "uvicorn>=0.54.0,<1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx2>=2.16.2,<3.0.0",
+    "pytest>=9.2.0,<10.0.0",
+    "ruff>=0.17.5,<1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py315"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
